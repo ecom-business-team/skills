@@ -2,9 +2,9 @@
 
 Every plugin and skill available in the ecom-business-team marketplace. **Automatically updated by `/team-skills-add`** on every skill submission — you should never need to edit this file by hand.
 
-> **How to install:** `/plugins install <plugin-name>` in Claude Code, after adding this marketplace (`/plugins marketplace add ecom-business-team/team-skills`).
+> **How to install:** Run `/team-skills-browse` in Claude Code and pick what you want. Works in the VSCode extension, terminal, and any Claude Code surface — no `/plugins` command needed.
 >
-> **Easier way:** Run `/team-skills-browse` — it does the discovery + install for you.
+> First time? See [README.md](README.md) for the one-paste bootstrap.
 
 ---
 
@@ -17,7 +17,8 @@ ecom-business-team/team-skills
 │   ├── /new-workflow
 │   ├── /onboard
 │   ├── /team-skills-add
-│   └── /team-skills-browse
+│   ├── /team-skills-browse
+│   └── /team-skills-update
 │
 ├── team-build-kit          (everyone) — Zachary Blake
 │   ├── /new-workspace
@@ -37,28 +38,27 @@ ecom-business-team/team-skills
     └── (empty — awaiting first contribution)
 ```
 
-**Reading the map:** each plugin is one install (`/plugins install <name>`). Skills are the individual commands you type in Claude Code. Everyone installs `general` + `team-build-kit`; the domain plugins are optional by role.
+**Reading the map:** each plugin is a group of related skills. Skills are individual commands you type in Claude Code (`/memo`, `/new-workflow`, etc.). Everyone installs `general` + `team-build-kit`; the domain plugins are optional by role. Use `/team-skills-browse` to install; no `/plugins install` required.
 
 ---
 
 ## `general` — recommended for everyone
 
 **Owner:** Zachary Blake
-**Install:** `/plugins install general`
 
 | Command | What it does |
 |---|---|
 | `/new-workflow` | Turn a repeat process into a reusable skill through a guided interview. The daily driver for building your own skill library. |
 | `/onboard` | First-run skill for someone new to Claude Code. Interviews the user about their work, scaffolds a personalized workspace with CLAUDE.md, CONTEXT.md files, and visual folder maps. |
 | `/team-skills-add` | Submit a skill from your local `~/.claude/skills/` to this marketplace. Runs the quality checklist, forks + branches + commits + opens a PR on your behalf. You never touch git. |
-| `/team-skills-browse` | Browse and install skills from this marketplace without knowing plugin commands. Shows what's available across all plugins, lets you pick, and installs. |
+| `/team-skills-browse` | Browse and install skills from this marketplace. Copies chosen skills directly into `~/.claude/skills/` — works in VSCode, terminal, any surface. |
+| `/team-skills-update` | Refresh every team-skill you have installed to the latest version. Only touches skills that came from the marketplace; leaves your personal skills alone. |
 
 ---
 
 ## `team-build-kit` — the three-gate build lifecycle
 
 **Owner:** Zachary Blake
-**Install:** `/plugins install team-build-kit`
 **Big idea:** *Complexity is the enemy. If you can't explain it simply, it's probably too complicated.*
 
 | Command | When to use it | Gate |
@@ -75,7 +75,6 @@ ecom-business-team/team-skills
 ## `copywriting` — for copywriters
 
 **Owner:** TBD
-**Install:** `/plugins install copywriting`
 **Status:** Placeholder — awaiting first contribution. Be the first to run `/team-skills-add` and submit something.
 
 ---
@@ -83,7 +82,6 @@ ecom-business-team/team-skills
 ## `creative-strategy` — for creative strategists
 
 **Owner:** TBD
-**Install:** `/plugins install creative-strategy`
 **Status:** Placeholder — awaiting first contribution.
 
 ---
@@ -91,15 +89,10 @@ ecom-business-team/team-skills
 ## `media-buying` — for media buyers
 
 **Owner:** TBD
-**Install:** `/plugins install media-buying`
 **Status:** Placeholder — awaiting first contribution.
 
 ---
 
 ## Getting updates
 
-```
-/plugins marketplace update
-```
-
-Refreshes everything you have installed. Run whenever you want the latest.
+Run `/team-skills-update` inside Claude Code. It refreshes every skill you installed from the marketplace to its latest version. Personal skills you built yourself are never touched.

@@ -1,66 +1,46 @@
 # Ecom Business Team — Skills Marketplace
 
-Shared skills for the team. Organized by functional domain. Install once, get updates forever.
+Shared skills for the team. Organized by functional domain. Install once, update anytime.
 
 ## What this is
 
-A collection of **skills** — natural-language commands you can type in Claude Code. Skills are packaged into **plugins** by role. Everyone installs `general` and `team-build-kit`. You install your domain plugin (`copywriting`, `creative-strategy`, `media-buying`, etc.) and any others you find useful.
+A collection of **skills** — natural-language commands you can type in Claude Code (e.g. `/memo`, `/new-workflow`). Skills are grouped into **plugins** by role. Everyone installs `general` and `team-build-kit`. You install your domain plugin (`copywriting`, `creative-strategy`, `media-buying`, etc.) on top.
 
-When someone on the team improves a skill or adds a new one, you get it with a single command.
+When someone on the team improves or adds a skill, you get it by running `/team-skills-update`.
 
-## First-time setup (3 commands)
+**Works everywhere:** VSCode extension, terminal Claude Code, any Claude Code surface. Skills install directly into `~/.claude/skills/` — no plugin manager required.
 
-Inside Claude Code, run:
+## First-time setup (one paste, one prompt)
 
-```
-/plugins marketplace add ecom-business-team/team-skills
-/plugins install general
-/plugins install team-build-kit
-```
+You do NOT need to open a terminal. Just open Claude Code (the VSCode extension is fine) and paste the following prompt into the chat:
 
-Then install your role's plugin — for example:
+> **Please install the ecom-business-team team-skills toolkit. Clone `https://github.com/ecom-business-team/team-skills.git` to `~/.cache/team-skills`, then copy every skill folder inside `plugins/general/skills/` (there should be five: `new-workflow`, `onboard`, `team-skills-add`, `team-skills-browse`, `team-skills-update`) into `~/.claude/skills/`. Write `general` into a `.team-skills-source` file inside each copied skill folder. When you're done, tell me it's ready and that I can run `/team-skills-browse` next.**
 
-```
-/plugins install media-buying
-```
+Claude will do the setup for you. Once it confirms, **open a new Claude Code session** (close the current window, open a fresh chat) — new skills only load on session start.
 
-That's it. The skills are now available in every Claude Code session.
-
-## Getting updates
-
-Anytime you want the latest skills the team has published:
-
-```
-/plugins marketplace update
-```
-
-Anything you have installed gets refreshed. Nothing else changes.
-
-## Discovering new skills
-
-Don't want to memorize commands. Instead:
+In the new session, run:
 
 ```
 /team-skills-browse
 ```
 
-Interactively browse what's available across all domains and install what looks useful. (Installed as part of `general`.)
+This shows every plugin available. Pick `team-build-kit` (everyone should have it) plus your role plugin (media-buying, copywriting, etc.), and it installs them.
 
-## Contributing a skill
+That's the whole onboarding. No terminal. No git commands. No `/plugins` command surface.
 
-Built something useful in Claude Code and want to share it with the team?
+## Everyday commands
 
-```
-/team-skills-add
-```
-
-Walks you through the quality checklist, runs the checks, and opens a pull request against this repo on your behalf. You never touch git. (Installed as part of `general`.)
+| Command | When |
+|---|---|
+| `/team-skills-browse` | Discover and install new skills |
+| `/team-skills-update` | Refresh every team-skill you have to the latest version |
+| `/team-skills-add` | Share a skill you built with the team (opens a PR for you) |
 
 ## Plugins
 
 | Plugin | Who | What's inside |
 |---|---|---|
-| `general` | Everyone | `new-workflow`, `onboard`, `team-skills-add`, `team-skills-browse` |
+| `general` | Everyone | `new-workflow`, `onboard`, `team-skills-add`, `team-skills-browse`, `team-skills-update` |
 | `team-build-kit` | Everyone | `memo` -> `prd` -> `build` -> `ship` lifecycle for building tools you can trust |
 | `copywriting` | Copywriters | *(placeholder — awaiting first contribution)* |
 | `creative-strategy` | Strategists | *(placeholder — awaiting first contribution)* |
@@ -68,4 +48,8 @@ Walks you through the quality checklist, runs the checks, and opens a pull reque
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the standard every skill must meet. Short version: skills must be **complete, standalone, and shipped-quality** — the same bar you'd use for something you rely on in production.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the standard every skill must meet. Short version: skills must be **complete, standalone, and shipped-quality** — the same bar you'd use for something you rely on in production. Use `/team-skills-add` to submit — it runs the checklist and opens the PR for you.
+
+## For maintainers
+
+The full living index is in [CONTEXT.md](CONTEXT.md). The interactive flow diagram is [flow.html](flow.html). The library of skills lives at [LIBRARY.md](LIBRARY.md) and is auto-updated by `/team-skills-add` on every merged submission.

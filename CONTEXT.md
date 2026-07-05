@@ -1,6 +1,6 @@
 # Skills Marketplace — System Context
 
-**What it is:** The `ecom-business-team/team-skills` GitHub repo. A Claude Code plugin marketplace that lets the whole team share, install, and improve skills from one central place. Every skill is production-quality (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+**What it is:** The `ecom-business-team/team-skills` GitHub repo. A shared library of Claude Code skills the whole team can install and improve. Distributed by direct file copy into `~/.claude/skills/` — no `/plugins` command surface required, so it works in the VSCode extension and every other Claude Code surface. Every skill is production-quality (see [CONTRIBUTING.md](CONTRIBUTING.md)).
 
 **Repo:** https://github.com/ecom-business-team/team-skills
 
@@ -8,19 +8,19 @@
 
 ## Purpose
 
-Solve the "how does the team share work across Claude Code" problem without inventing infrastructure. Uses Claude Code's native plugin/marketplace mechanism plus standard GitHub PR flow. Two custom skills (`/team-skills-add`, `/team-skills-browse`) hide git and the `/plugins` command surface so non-technical teammates never need to learn either.
+Solve the "how does the team share work across Claude Code" problem without inventing infrastructure. Uses standard GitHub PR flow plus three custom skills that hide git and file management from the user. **Bypasses Claude Code's `/plugins` command surface** because it's terminal-only today and the team uses the VSCode extension; skills install straight into `~/.claude/skills/` where every surface picks them up.
 
 ## What lives here
 
 | File / Folder | What it is | Living or disposable |
 |---|---|---|
-| `README.md` | Team-facing onboarding — the 3-command install and update flow | Living |
+| `README.md` | Team-facing onboarding — the one-paste bootstrap prompt + everyday commands | Living |
 | `CONTRIBUTING.md` | The shipped-quality checklist every skill must pass | Living |
 | `CONTEXT.md` | This file — the local index (Zak's personal map) | Living |
 | `LIBRARY.md` | Enumerated list of every plugin and skill with descriptions | Living — regenerate when skills are added/removed |
 | `flow.html` | Interactive diagram of the publish + install flow (team-visible) | Living — update when the mechanism changes |
 | `.claude-plugin/marketplace.json` | The manifest Claude Code reads when adding this marketplace | Living |
-| `plugins/general/` | Skills recommended for everyone (`new-workflow`, `onboard`, `team-skills-add`, `team-skills-browse`) | Living |
+| `plugins/general/` | Skills recommended for everyone (`new-workflow`, `onboard`, `team-skills-add`, `team-skills-browse`, `team-skills-update`) | Living |
 | `plugins/team-build-kit/` | The `/memo -> /prd -> /build -> /ship` lifecycle | Living |
 | `plugins/copywriting/` | Copywriter skills — placeholder pending first contribution | Living |
 | `plugins/creative-strategy/` | Creative strategist skills — placeholder pending first contribution | Living |
@@ -31,7 +31,7 @@ Solve the "how does the team share work across Claude Code" problem without inve
 | Question | Look here |
 |---|---|
 | "What plugins exist and what's in them?" | [LIBRARY.md](LIBRARY.md) |
-| "How does a teammate install this?" | [README.md](README.md) — 3 commands |
+| "How does a teammate install this?" | [README.md](README.md) — one-paste bootstrap |
 | "How does a teammate submit a skill?" | [CONTRIBUTING.md](CONTRIBUTING.md) + `/team-skills-add` |
 | "How does the whole system work end-to-end?" | [flow.html](flow.html) — visual diagram |
 | "Who owns each plugin?" | Each plugin's own `README.md` |
@@ -54,14 +54,15 @@ Solve the "how does the team share work across Claude Code" problem without inve
 - Plugin owners are the reviewers for PRs to their plugin
 - New plugins are proposed via PR (open against `general`, note the request in the description)
 
-## The two custom skills (why they exist)
+## The three custom skills (why they exist)
 
-The whole point of this system is that **teammates never touch git or memorize `/plugins` commands.** Two skills carry that promise:
+The whole point of this system is that **teammates never touch git or the `/plugins` surface.** Three skills carry that promise, all in `general`:
 
-- **`/team-skills-add`** — teammate says "I want to share this skill." Skill runs the CONTRIBUTING checklist against the skill, forks the repo, branches, commits, opens the PR. Teammate sees a PR URL and confirmation.
-- **`/team-skills-browse`** — teammate says "what's available?" Skill fetches the marketplace catalog live from GitHub, presents plugins + skills with descriptions, installs what's picked.
+- **`/team-skills-browse`** — teammate says "what's available?" Skill clones/pulls the marketplace to `~/.cache/team-skills/`, presents the catalog with descriptions, copies chosen skill folders into `~/.claude/skills/`. Writes a `.team-skills-source` marker in each installed skill so updates know what it manages.
+- **`/team-skills-update`** — teammate says "give me the latest." Skill pulls the marketplace cache and refreshes every marker-tagged skill in `~/.claude/skills/`. Personal skills without the marker are never touched.
+- **`/team-skills-add`** — teammate says "I want to share this skill." Skill runs the CONTRIBUTING checklist, forks the repo, branches, commits, opens the PR. Teammate sees a PR URL.
 
-Both live in `general` so every teammate has them from day one.
+**Install mechanism (why we bypass `/plugins`):** `/plugin marketplace add` and `/plugin install` only work in the terminal CLI today, not the VSCode extension where most of the team lives. Copying files into `~/.claude/skills/` works on every surface. When Anthropic ships plugin management in the extension, we can layer it on top — the file-based path continues to work.
 
 ## What this system does NOT include (yet)
 

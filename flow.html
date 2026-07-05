@@ -161,13 +161,13 @@
 
   <div class="node automated" onclick="this.classList.toggle('open')">
     <div class="node-title">3. Install happens</div>
-    <div class="node-summary">Native <code>/plugins install</code> pulls chosen plugins</div>
+    <div class="node-summary">Skill folders copied into <code>~/.claude/skills/</code></div>
     <div class="node-detail">
       <div class="prop"><span class="prop-key">Trigger</span><span>Teammate picks plugins</span></div>
-      <div class="prop"><span class="prop-key">Action</span><span>Skill invokes <code>/plugins install &lt;name&gt;</code> for each pick</span></div>
+      <div class="prop"><span class="prop-key">Action</span><span>Skill invokes copies each skill folder into <code>~/.claude/skills/</code> for each pick</span></div>
       <div class="prop"><span class="prop-key">Owner</span><span>System</span></div>
-      <div class="prop"><span class="prop-key">System</span><span>Claude Code plugin manager</span></div>
-      <div class="prop"><span class="prop-key">Output</span><span>Skills registered locally in Claude Code</span></div>
+      <div class="prop"><span class="prop-key">System</span><span>Direct file copy</span></div>
+      <div class="prop"><span class="prop-key">Output</span><span>Skills available on next Claude Code session start</span></div>
       <div class="prop"><span class="prop-key">Handoff</span><span>Available in every future Claude Code session</span></div>
     </div>
   </div>
@@ -187,12 +187,12 @@
 
   <div class="node automated" onclick="this.classList.toggle('open')">
     <div class="node-title">5. Getting updates</div>
-    <div class="node-summary"><code>/plugins marketplace update</code> pulls latest</div>
+    <div class="node-summary"><code>/team-skills-update</code> pulls latest</div>
     <div class="node-detail">
       <div class="prop"><span class="prop-key">Trigger</span><span>Teammate runs update (on demand)</span></div>
       <div class="prop"><span class="prop-key">Action</span><span>Marketplace repo pulled fresh from GitHub</span></div>
       <div class="prop"><span class="prop-key">Owner</span><span>System</span></div>
-      <div class="prop"><span class="prop-key">System</span><span>Claude Code plugin manager</span></div>
+      <div class="prop"><span class="prop-key">System</span><span>Direct file copy</span></div>
       <div class="prop"><span class="prop-key">Output</span><span>All installed plugins refreshed to latest <code>main</code></span></div>
       <div class="prop"><span class="prop-key">Handoff</span><span>New skill versions immediately usable</span></div>
     </div>
@@ -264,18 +264,18 @@
       <div class="prop"><span class="prop-key">Owner</span><span>Plugin owner</span></div>
       <div class="prop"><span class="prop-key">System</span><span>GitHub</span></div>
       <div class="prop"><span class="prop-key">Output</span><span>Approve + merge, or request changes with a specific reason</span></div>
-      <div class="prop"><span class="prop-key">Handoff</span><span>On merge: whole team gets it on next <code>/plugins marketplace update</code></span></div>
+      <div class="prop"><span class="prop-key">Handoff</span><span>On merge: whole team gets it on next <code>/team-skills-update</code></span></div>
     </div>
   </div>
 
   <div class="node automated" onclick="this.classList.toggle('open')">
     <div class="node-title">6. Rollout to team</div>
-    <div class="node-summary">Team pulls via <code>/plugins marketplace update</code></div>
+    <div class="node-summary">Team pulls via <code>/team-skills-update</code></div>
     <div class="node-detail">
       <div class="prop"><span class="prop-key">Trigger</span><span>PR merged to <code>main</code></span></div>
       <div class="prop"><span class="prop-key">Action</span><span>Anyone with the plugin installed picks up the new skill on their next update</span></div>
       <div class="prop"><span class="prop-key">Owner</span><span>System (pulled on demand)</span></div>
-      <div class="prop"><span class="prop-key">System</span><span>Claude Code plugin manager</span></div>
+      <div class="prop"><span class="prop-key">System</span><span>Direct file copy</span></div>
       <div class="prop"><span class="prop-key">Output</span><span>Skill available in every session for every teammate</span></div>
       <div class="prop"><span class="prop-key">Handoff</span><span>Loop closed — Flow A step 4</span></div>
     </div>
@@ -291,7 +291,7 @@
     <div class="review-a">
       <b>Checklist too strict:</b> teammate can't get through the fork/branch flow and gives up. Mitigation: <code>/team-skills-add</code> tells them the exact fix and lets them re-run.<br>
       <b>Silent merge conflict:</b> two teammates submit the same skill name. Mitigation: PR review catches it before merge.<br>
-      <b>Stale local clone:</b> teammate installs before <code>/plugins marketplace update</code>. Mitigation: <code>/team-skills-browse</code> always fetches live from GitHub, so the catalog is never stale.
+      <b>Stale local clone:</b> teammate installs before <code>/team-skills-update</code>. Mitigation: <code>/team-skills-browse</code> always fetches live from GitHub, so the catalog is never stale.
     </div>
   </div>
 
@@ -307,9 +307,9 @@
   <div class="review-item">
     <div class="review-q">What's the fallback?</div>
     <div class="review-a">
-      <b>Skill installation fails:</b> teammate can manually run <code>/plugins install &lt;name&gt;</code> — <code>/team-skills-browse</code> is a convenience layer, not a dependency.<br>
+      <b>Skill installation fails:</b> teammate can manually run copies each skill folder into <code>~/.claude/skills/</code> — <code>/team-skills-browse</code> is a convenience layer, not a dependency.<br>
       <b>Skill submission fails:</b> teammate can open a PR by hand through GitHub UI — <code>/team-skills-add</code> is a convenience wrapper over standard git.<br>
-      <b>Bad skill merged:</b> revert PR + <code>/plugins marketplace update</code> propagates the removal.
+      <b>Bad skill merged:</b> revert PR + <code>/team-skills-update</code> propagates the removal.
     </div>
   </div>
 </div>

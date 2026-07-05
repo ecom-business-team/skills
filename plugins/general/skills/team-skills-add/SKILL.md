@@ -100,7 +100,7 @@ Contributed via \`/team-skills-add\`."
 ### Step 5 — Report
 
 Print the PR URL to the user. Tell them:
-- *"Your submission is now a pull request: `<url>`. The plugin owner will review. When they merge, everyone on the team gets it on their next `/plugins marketplace update`."*
+- *"Your submission is now a pull request: `<url>`. The plugin owner will review. When they merge, everyone on the team gets it on their next `/team-skills-update`."*
 - *"You can safely close this Claude Code session — the PR is on GitHub now."*
 
 ## Failure modes
