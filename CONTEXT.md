@@ -47,7 +47,7 @@ Solve the "how does the team share work across Claude Code" problem without inve
 | `copywriting` | TBD | Placeholder |
 | `creative-strategy` | Kat Prefontaine | Live |
 | `clickup-operations` | Spencer | Live |
-| `media-buying` | TBD | Placeholder |
+| `media-buying` | Sami | Placeholder |
 
 ## Governance
 

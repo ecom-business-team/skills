@@ -41,7 +41,7 @@ ecom-business-team/team-skills
 │   ├── /brief-template
 │   └── /top-lp
 │
-└── media-buying            (buyers) — owner TBD
+└── media-buying            (buyers) — Sami
     └── (empty — awaiting first contribution)
 ```
 
@@ -113,7 +113,7 @@ ecom-business-team/team-skills
 
 ## `media-buying` — for media buyers
 
-**Owner:** TBD
+**Owner:** Sami
 **Status:** Placeholder — awaiting first contribution.
 
 ---

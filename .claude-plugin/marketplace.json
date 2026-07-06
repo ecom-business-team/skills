@@ -47,7 +47,7 @@
     {
       "name": "media-buying",
       "source": "./plugins/media-buying",
-      "description": "Skills for media buyers. (Placeholder - awaiting first contribution.)",
+      "description": "Skills for media buyers. Owner: Sami. (Placeholder - awaiting first contribution.)",
       "version": "0.1.0",
       "category": "domain"
     }
