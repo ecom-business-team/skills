@@ -38,6 +38,8 @@ Classify each:
 
 Present the tasks that need a template as a numbered list (name + client + status). Ask which to do — accept a single number, several, or `all`. If none need one, say everything across those statuses already has a template and stop.
 
+**Also note the batch/UGC kind from the title** (needed in Step 3 for DFC): a title with the `UGC#` marker is a **UGC task**; `BATCH#` (or anything else) is a **batch task**. This only changes the DFC scaffold — see Step 3.
+
 ## Step 2 — Resolve client + catalog (per task)
 
 Read the task's **Client relation** field → map the client card ID to the catalog doc ID via the table above.
@@ -46,9 +48,11 @@ Read the task's **Client relation** field → map the client card ID to the cata
 
 Call `mcp__claude_ai_ClickUp__clickup_list_document_pages` on the catalog doc (`max_page_depth: -1`). Find the page whose name contains **`TASK FORMAT TEMPLATE`**. Get it with `mcp__claude_ai_ClickUp__clickup_get_document_pages` (`content_format: "text/md"`).
 
-Use that page's body as the scaffold, **verbatim**, with one change: strip any instruction line like `COPY + PASTE THE TEMPLATE BELOW`. Keep everything else exactly as the catalog has it — including the `Links to: Top performing LP(s)` placeholder and (for DFC) the Persona/Desire/Motivator/Angle block. Each catalog carries the right shape for its client (DFC long w/ persona block; Keeps short). Do NOT fill any field.
+Use that page's body as the scaffold, **verbatim**, with one change: strip any instruction line like `COPY + PASTE THE TEMPLATE BELOW`. Keep everything else exactly as the catalog has it — including the `Links to: Top performing LP(s)` placeholder and (for a DFC **batch** task) the Persona/Desire/Motivator/Angle block. Each catalog carries the right shape for its client (DFC long w/ persona block; Keeps short). Do NOT fill any field.
 
-DFC template for reference (always read it live):
+**DFC UGC exception:** for a DFC task whose title carries the `UGC#` marker (classified in Step 1), **strip the persona block** — the whole `--- … ---` section (`Persona/identity`, `Desire`, `Core emotional motivator`, `Angle description`, and its surrounding dividers). Keep `Creatives:`, `Links to:`, and `Copy + Headlines:`. UGC tasks get the leaner scaffold; only DFC **batch** tasks keep the persona block. This is a DFC-only distinction — Keeps templates have no persona block, so batch vs UGC makes no difference there.
+
+DFC **batch** template for reference (always read it live):
 ```
 **Creatives:**
 
@@ -62,6 +66,15 @@ Desire (de):
 Core emotional motivator (cm):
 Angle description (an):
 ---
+```
+
+DFC **UGC** scaffold (same template, persona block stripped):
+```
+**Creatives:**
+
+**Links to:** Top performing LP(s)
+
+**Copy + Headlines:**
 ```
 
 ## Step 4 — Assemble and write
@@ -92,6 +105,7 @@ Several at once → one block each + a final count.
 - **Memo is sacred.** Keep the existing memo verbatim, below the template. If you can't read the existing description, stop and ask — never risk wiping it.
 - **A blank template = already done for this skill.** Only tasks with NO scaffold at all are targets. Don't add a second template to a task that already has one (even an empty one).
 - **Live pull, every time.** Always read the catalog's own template page fresh; never paste a remembered version.
+- **DFC UGC gets no persona block.** A DFC task with `UGC#` in its title gets the leaner scaffold (Creatives / Links to / Copy + Headlines only) — strip the Persona/Desire/Motivator/Angle block. Only DFC `BATCH#` tasks keep it. Keeps templates never have a persona block, so this only matters for DFC.
 
 ## When to refuse / clarify
 
