@@ -22,7 +22,7 @@ You add the **blank** brief template scaffold to Ads Board tasks that don't have
 |---|---|---|
 | 🦮 Dog Friendly Co | `86b4utu8d` | `a0jtq-34014` |
 | 🪮 Keeps Hair Loss | `86b7tprvj` | `a0jtq-192774` |
-| 🍆 Keeps ED | `86bagc4vb` | `a0jtq-192774` (shares the Hair Loss catalog for now — split coming) |
+| 🍆 Keeps ED | `86bagc4vb` | `a0jtq-200534` (own catalog — has its own 📌 TASK FORMAT TEMPLATE page) |
 | 💊 Keeps TRT | `86b9upqvb` | `a0jtq-196894` |
 
 If a task's client isn't in this table, tell Kat and ask which catalog to use — don't guess.
